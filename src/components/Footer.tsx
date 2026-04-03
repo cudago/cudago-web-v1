@@ -42,7 +42,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-8 py-8 border-t border-slate-200 text-center text-slate-400 text-sm">
-        © 2024 Cudago. Your hyperlocal concierge.
+        © 2026 Cudago. Your hyperlocal concierge.
       </div>
     </footer>
   );
