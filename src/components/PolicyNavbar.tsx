@@ -12,8 +12,8 @@ export const PolicyNavbar = () => {
   const policyLinks = [
     { name: 'Terms', path: '/policies/terms' },
     { name: 'Privacy', path: '/policies/privacy' },
-    { name: 'Cookies', path: '/policies/cookies' },
-    { name: 'Security', path: '/policies/security' },
+    // { name: 'Cookies', path: '/policies/cookies' },
+    // { name: 'Security', path: '/policies/security' },
   ];
 
   const companyLinks = [
