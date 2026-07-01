@@ -6,7 +6,7 @@ export const Footer = () => {
     <footer className="bg-slate-50 rounded-t-[3rem] md:rounded-t-[5rem] mt-20">
       <div className="max-w-7xl mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-12">
         <div className="col-span-2 md:col-span-1">
-          <Link to="/" className="text-2xl font-bold text-blue-800 font-headline mb-6 block">Cudago</Link>
+          <Link to="/" className="text-2xl font-bold text-primary font-headline mb-6 block">Cudago</Link>
           <p className="text-slate-500 mb-8 max-w-xs">
             Your hyperlocal digital concierge for verified and trusted home services.
           </p>
@@ -26,18 +26,18 @@ export const Footer = () => {
         <div>
           <h4 className="font-bold text-primary mb-6">Company</h4>
           <ul className="space-y-4">
-            <li><Link to="/company/careers" className="text-slate-500 hover:text-blue-600 hover:translate-x-1 inline-block transition-all">Careers</Link></li>
-            <li><Link to="/company/press" className="text-slate-500 hover:text-blue-600 hover:translate-x-1 inline-block transition-all">Press Kit</Link></li>
+            <li><Link to="/company/careers" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Careers</Link></li>
+            <li><Link to="/company/press" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Press Kit</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-bold text-primary mb-6">Legal</h4>
           <ul className="space-y-4">
-            <li><Link to="/policies/terms" className="text-slate-500 hover:text-blue-600 hover:translate-x-1 inline-block transition-all">Terms of Service</Link></li>
-            <li><Link to="/policies/privacy" className="text-slate-500 hover:text-blue-600 hover:translate-x-1 inline-block transition-all">Privacy Policy</Link></li>
-            <li><Link to="/policies/cookies" className="text-slate-500 hover:text-blue-600 hover:translate-x-1 inline-block transition-all">Cookie Policy</Link></li>
-            <li><Link to="/policies/security" className="text-slate-500 hover:text-blue-600 hover:translate-x-1 inline-block transition-all">Security</Link></li>
+            <li><Link to="/policies/terms" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Terms of Service</Link></li>
+            <li><Link to="/policies/privacy" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Privacy Policy</Link></li>
+            <li><Link to="/policies/cookies" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Cookie Policy</Link></li>
+            <li><Link to="/policies/security" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Security</Link></li>
           </ul>
         </div>
       </div>
@@ -47,4 +47,3 @@ export const Footer = () => {
     </footer>
   );
 };
-
