@@ -68,7 +68,7 @@ export const PrivacyPolicy = () => {
         <h2 className="text-2xl font-bold mb-4">7. Your Choices and Account Deletion</h2>
         <p>
           You may update profile details in the app where supported. You can request account deletion through our{' '}
-          <Link to="/delete-account" className="font-bold text-primary underline underline-offset-4">
+          <Link to="/app/user/delete-account" className="font-bold text-primary underline underline-offset-4">
             Delete Account page
           </Link>
           {' '}or by contacting cudagoplatform@gmail.com to request access, correction, deletion, or assistance with your information. Some records may be retained after deletion where legally required or necessary for completed transactions, fraud prevention, dispute handling, accounting, or compliance.

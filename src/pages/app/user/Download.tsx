@@ -1,9 +1,9 @@
-import { PageLayout } from '../components/PageLayout';
-import { Button } from '../components/ui/Button';
-import { Smartphone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Smartphone } from 'lucide-react';
+import { PageLayout } from '../../../components/PageLayout';
+import { Button } from '../../../components/ui/Button';
 
-export const Download = () => {
+export const UserAppDownload = () => {
   return (
     <PageLayout title="Download the Cudago app" subtitle="Our mobile app is being prepared for public release.">
       <div className="text-center py-12">

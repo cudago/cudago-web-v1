@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Mail, ShieldCheck, Smartphone, Trash2 } from 'lucide-react';
-import { PageLayout } from '../components/PageLayout';
-import { Button } from '../components/ui/Button';
+import { PageLayout } from '../../../components/PageLayout';
+import { Button } from '../../../components/ui/Button';
 
-export const DeleteAccount = () => {
+export const UserAppDeleteAccount = () => {
   return (
     <PageLayout
       title="Delete Your Cudago Account"

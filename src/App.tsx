@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom';
 import { Home } from './Home';
 import { TermsOfService } from './policies/TermsOfService';
 import { PrivacyPolicy } from './policies/PrivacyPolicy';
@@ -7,10 +7,10 @@ import { Security } from './policies/Security';
 import { Careers } from './company/Careers';
 import { PressKit } from './company/PressKit';
 import { ScrollToTop } from './components/ScrollToTop';
-import { Download } from './pages/Download';
 import { Contact } from './pages/Contact';
 import { Apply } from './pages/Apply';
-import { DeleteAccount } from './pages/DeleteAccount';
+import { UserAppDownload } from './pages/app/user/Download';
+import { UserAppDeleteAccount } from './pages/app/user/DeleteAccount';
 
 export default function App() {
   return (
@@ -24,12 +24,13 @@ export default function App() {
         <Route path="/policies/security" element={<Security />} />
         <Route path="/company/careers" element={<Careers />} />
         <Route path="/company/press" element={<PressKit />} />
-        <Route path="/download" element={<Download />} />
+        <Route path="/app/user/download" element={<UserAppDownload />} />
+        <Route path="/app/user/delete-account" element={<UserAppDeleteAccount />} />
+        <Route path="/download" element={<Navigate to="/app/user/download" replace />} />
+        <Route path="/delete-account" element={<Navigate to="/app/user/delete-account" replace />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/apply" element={<Apply />} />
-        <Route path="/delete-account" element={<DeleteAccount />} />
       </Routes>
     </Router>
   );
 }
-
