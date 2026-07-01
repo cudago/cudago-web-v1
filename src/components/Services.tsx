@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Utensils, HeartHandshake, Car, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, Utensils, HeartHandshake, Car, ChevronLeft, ChevronRight, Wrench } from 'lucide-react';
 import { Card } from './ui/Card';
 
 export const Services = () => {
@@ -17,34 +17,29 @@ export const Services = () => {
   const services = [
     {
       icon: <Sparkles className="text-primary" size={32} />,
-      title: 'Maid & Cleaning',
-      description: 'Daily cleaning, deep cleaning, and household chores managed by verified professionals.',
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=400',
+      title: 'Cleaning',
+      description: 'Routine home cleaning and deep cleaning support for apartments and family homes.',
     },
     {
       icon: <Utensils className="text-primary" size={32} />,
-      title: 'Gourmet Cooks',
-      description: 'Experienced cooks who can prepare healthy, delicious meals tailored to your dietary needs.',
-      image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=400',
+      title: 'Cooking',
+      description: 'Daily cooks and meal-prep help for busy households.',
     },
     {
       icon: <HeartHandshake className="text-primary" size={32} />,
-      title: 'Elderly Support',
-      description: 'Compassionate and trained caregivers to assist your elderly loved ones with daily activities.',
-      image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=400',
+      title: 'Care Support',
+      description: 'Assistance for children, elders, and family members who need extra help at home.',
     },
     {
       icon: <Car className="text-primary" size={32} />,
       title: 'Drivers',
-      description: 'Reliable and background-checked drivers for your daily commute or special trips.',
-      image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=400',
+      description: 'Driver support for planned local commutes and household travel needs.',
     },
     {
-      icon: <Sparkles className="text-primary" size={32} />,
-      title: 'Babysitting',
-      description: 'Trusted and experienced babysitters to take care of your little ones while you work or relax.',
-      image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=400',
-    }
+      icon: <Wrench className="text-primary" size={32} />,
+      title: 'Repairs',
+      description: 'Plumbing, electrical, appliance, and other home maintenance requests.',
+    },
   ];
 
   return (
@@ -54,18 +49,18 @@ export const Services = () => {
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">Our Services</h2>
             <p className="text-xl text-on-surface-variant">
-              Everything you need to run your home smoothly, provided by trusted professionals from your community.
+              Practical help for the tasks that keep a home running.
             </p>
           </div>
-          <div className="flex gap-3 hidden sm:flex">
-            <button 
+          <div className="gap-3 hidden sm:flex">
+            <button
               onClick={() => scroll('left')}
               className="w-12 h-12 rounded-full border border-surface-container-high flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
               aria-label="Scroll left"
             >
               <ChevronLeft size={24} />
             </button>
-            <button 
+            <button
               onClick={() => scroll('right')}
               className="w-12 h-12 rounded-full border border-surface-container-high flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
               aria-label="Scroll right"
@@ -75,32 +70,24 @@ export const Services = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={scrollRef}
           className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 pb-8 -mx-6 px-6 md:mx-0 md:px-0"
         >
           {services.map((service, index) => (
             <motion.div
-              key={index}
+              key={service.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="min-w-[85vw] sm:min-w-[350px] lg:min-w-[400px] snap-start flex-shrink-0"
             >
-              <Card className="h-full overflow-hidden group border-none shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-56 overflow-hidden">
-                  <img 
-                    src={service.image} 
-                    alt={service.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
+              <Card className="h-full border-none shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="h-32 rounded-2xl bg-primary-fixed flex items-center justify-center m-8 mb-0">
+                  {service.icon}
                 </div>
                 <div className="p-8">
-                  <div className="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center mb-6 -mt-14 relative z-10 border-4 border-white shadow-sm">
-                    {service.icon}
-                  </div>
                   <h3 className="text-2xl font-bold mb-3 text-on-surface">{service.title}</h3>
                   <p className="text-on-surface-variant leading-relaxed">
                     {service.description}

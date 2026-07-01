@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="col-span-2 md:col-span-1">
           <Link to="/" className="text-2xl font-bold text-primary font-headline mb-6 block">Cudago</Link>
           <p className="text-slate-500 mb-8 max-w-xs">
-            Your hyperlocal digital concierge for verified and trusted home services.
+            A simple app for booking reliable home services.
           </p>
           <div className="flex gap-4">
             <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all cursor-pointer">
@@ -42,7 +42,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-8 py-8 border-t border-slate-200 text-center text-slate-400 text-sm">
-        © 2026 Cudago. Your hyperlocal concierge.
+        © 2026 Cudago. Home services made local.
       </div>
     </footer>
   );

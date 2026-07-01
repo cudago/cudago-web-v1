@@ -6,17 +6,17 @@ export const CTA = () => {
     <section className="py-24 text-center">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-6">
-          Get reliable help, without the hassle
+          Cudago is getting ready for launch
         </h2>
         <p className="text-xl text-on-surface-variant mb-12">
-          Join thousands of happy families in Kharadi making their lives simpler today.
+          We are building a simpler way to book trusted home services from your phone.
         </p>
         <div className="flex flex-wrap justify-center gap-6">
-          <Link to="/waitlist">
-            <Button size="xl">Join Waitlist</Button>
-          </Link>
+          <a href="#download">
+            <Button size="xl">Download App</Button>
+          </a>
           <Link to="/contact">
-            <Button variant="outline" size="xl">Contact Sales</Button>
+            <Button variant="outline" size="xl">Contact Us</Button>
           </Link>
         </div>
       </div>

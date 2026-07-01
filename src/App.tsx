@@ -7,7 +7,7 @@ import { Security } from './policies/Security';
 import { Careers } from './company/Careers';
 import { PressKit } from './company/PressKit';
 import { ScrollToTop } from './components/ScrollToTop';
-import { Waitlist } from './pages/Waitlist';
+import { Download } from './pages/Download';
 import { Contact } from './pages/Contact';
 import { Apply } from './pages/Apply';
 
@@ -23,14 +23,12 @@ export default function App() {
         <Route path="/policies/security" element={<Security />} />
         <Route path="/company/careers" element={<Careers />} />
         <Route path="/company/press" element={<PressKit />} />
-        <Route path="/waitlist" element={<Waitlist />} />
+        <Route path="/download" element={<Download />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/apply" element={<Apply />} />
       </Routes>
     </Router>
   );
 }
-
-
 
 
