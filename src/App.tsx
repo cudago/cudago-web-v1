@@ -10,6 +10,7 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { Download } from './pages/Download';
 import { Contact } from './pages/Contact';
 import { Apply } from './pages/Apply';
+import { DeleteAccount } from './pages/DeleteAccount';
 
 export default function App() {
   return (
@@ -26,9 +27,9 @@ export default function App() {
         <Route path="/download" element={<Download />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/apply" element={<Apply />} />
+        <Route path="/delete-account" element={<DeleteAccount />} />
       </Routes>
     </Router>
   );
 }
-
 

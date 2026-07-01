@@ -1,4 +1,5 @@
 import { PolicyLayout } from './PolicyLayout';
+import { Link } from 'react-router-dom';
 
 export const PrivacyPolicy = () => {
   return (
@@ -66,7 +67,11 @@ export const PrivacyPolicy = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">7. Your Choices and Account Deletion</h2>
         <p>
-          You may update profile details in the app where supported. Customers can request account deletion from the Cudago app profile screen. You may also contact us at support@cudago.in to request access, correction, deletion, or assistance with your information. Some records may be retained after deletion where legally required or necessary for completed transactions, fraud prevention, dispute handling, accounting, or compliance.
+          You may update profile details in the app where supported. You can request account deletion through our{' '}
+          <Link to="/delete-account" className="font-bold text-primary underline underline-offset-4">
+            Delete Account page
+          </Link>
+          {' '}or by contacting support@cudago.in to request access, correction, deletion, or assistance with your information. Some records may be retained after deletion where legally required or necessary for completed transactions, fraud prevention, dispute handling, accounting, or compliance.
         </p>
       </section>
 
