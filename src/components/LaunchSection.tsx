@@ -1,5 +1,6 @@
 import { Apple, Play, Smartphone } from 'lucide-react';
 import { Button } from './ui/Button';
+import cudagoUserHome from '../../images/cudago-user-home.png';
 
 export const LaunchSection = () => {
   return (
@@ -30,16 +31,12 @@ export const LaunchSection = () => {
           </div>
 
           <div className="relative z-10 md:w-2/5 flex justify-center">
-            <div className="w-64 rounded-[2rem] bg-white p-5 shadow-2xl rotate-3">
-              <div className="rounded-[1.5rem] bg-surface-container-low p-5 space-y-4">
-                <div className="h-3 w-20 rounded-full bg-primary/30 mx-auto" />
-                <div className="rounded-2xl bg-white p-4">
-                  <p className="text-xs font-bold text-primary tracking-widest uppercase">Cudago</p>
-                  <p className="mt-2 text-2xl font-bold text-on-surface">Book home help</p>
-                </div>
-                <div className="h-24 rounded-2xl bg-primary-fixed" />
-                <div className="h-12 rounded-full bg-primary" />
-              </div>
+            <div className="w-64 rounded-[2rem] bg-white p-3 shadow-2xl rotate-3">
+              <img
+                src={cudagoUserHome}
+                alt="Cudago app home screen"
+                className="w-full rounded-[1.5rem]"
+              />
             </div>
           </div>
         </div>
