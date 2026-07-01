@@ -2,8 +2,6 @@ import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-d
 import { Home } from './Home';
 import { TermsOfService } from './policies/TermsOfService';
 import { PrivacyPolicy } from './policies/PrivacyPolicy';
-import { CookiePolicy } from './policies/CookiePolicy';
-import { Security } from './policies/Security';
 import { Careers } from './company/Careers';
 import { PressKit } from './company/PressKit';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -20,8 +18,6 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/policies/terms" element={<TermsOfService />} />
         <Route path="/policies/privacy" element={<PrivacyPolicy />} />
-        <Route path="/policies/cookies" element={<CookiePolicy />} />
-        <Route path="/policies/security" element={<Security />} />
         <Route path="/company/careers" element={<Careers />} />
         <Route path="/company/press" element={<PressKit />} />
         <Route path="/app/user/download" element={<UserAppDownload />} />

@@ -37,8 +37,6 @@ export const Footer = () => {
             <li><Link to="/policies/terms" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Terms of Service</Link></li>
             <li><Link to="/policies/privacy" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Privacy Policy</Link></li>
             <li><Link to="/app/user/delete-account" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Delete Account</Link></li>
-            <li><Link to="/policies/cookies" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Cookie Policy</Link></li>
-            <li><Link to="/policies/security" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Security</Link></li>
           </ul>
         </div>
       </div>
