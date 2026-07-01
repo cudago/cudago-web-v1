@@ -71,7 +71,7 @@ export const PrivacyPolicy = () => {
           <Link to="/delete-account" className="font-bold text-primary underline underline-offset-4">
             Delete Account page
           </Link>
-          {' '}or by contacting support@cudago.in to request access, correction, deletion, or assistance with your information. Some records may be retained after deletion where legally required or necessary for completed transactions, fraud prevention, dispute handling, accounting, or compliance.
+          {' '}or by contacting cudagoplatform@gmail.com to request access, correction, deletion, or assistance with your information. Some records may be retained after deletion where legally required or necessary for completed transactions, fraud prevention, dispute handling, accounting, or compliance.
         </p>
       </section>
 
@@ -99,7 +99,7 @@ export const PrivacyPolicy = () => {
       <section>
         <h2 className="text-2xl font-bold mb-4">11. Contact Us</h2>
         <p>
-          For privacy questions, account deletion help, or data requests, contact us at support@cudago.in.
+          For privacy questions, account deletion help, or data requests, contact us at cudagoplatform@gmail.com.
         </p>
       </section>
     </PolicyLayout>

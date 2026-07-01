@@ -51,7 +51,7 @@ export const TermsOfService = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">7. Cancellations, Reassignments, and Support</h2>
         <p>
-          Bookings may be cancelled, declined, reassigned, refunded, rescheduled, or adjusted based on provider availability, service area coverage, safety concerns, payment status, customer request, provider request, or operational constraints. You may contact support through the app or by emailing support@cudago.in. Support tickets, messages, and transaction references may be used to investigate and resolve issues.
+          Bookings may be cancelled, declined, reassigned, refunded, rescheduled, or adjusted based on provider availability, service area coverage, safety concerns, payment status, customer request, provider request, or operational constraints. You may contact support through the app or by emailing cudagoplatform@gmail.com. Support tickets, messages, and transaction references may be used to investigate and resolve issues.
         </p>
       </section>
 
@@ -93,7 +93,7 @@ export const TermsOfService = () => {
       <section>
         <h2 className="text-2xl font-bold mb-4">13. Contact</h2>
         <p>
-          For questions about these Terms, contact us at support@cudago.in.
+          For questions about these Terms, contact us at cudagoplatform@gmail.com.
         </p>
       </section>
     </PolicyLayout>

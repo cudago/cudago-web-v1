@@ -48,7 +48,7 @@ export const DeleteAccount = () => {
             Cudago customer app or Cudago Partner app. Our support team may ask for limited verification information to
             confirm that the request belongs to you.
           </p>
-          <a href="mailto:support@cudago.in?subject=Cudago%20Account%20Deletion%20Request">
+          <a href="mailto:cudagoplatform@gmail.com?subject=Cudago%20Account%20Deletion%20Request">
             <Button size="lg" className="mt-6">
               <Mail size={20} className="mr-2" />
               Email Deletion Request
