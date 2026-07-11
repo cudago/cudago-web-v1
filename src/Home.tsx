@@ -1,7 +1,6 @@
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
 import { Services } from './components/Services';
-import { HowItWorks } from './components/HowItWorks';
 import { LaunchSection } from './components/LaunchSection';
 import { CTA } from './components/CTA';
 import { Navbar } from './components/Navbar';
@@ -15,7 +14,6 @@ export const Home = () => {
         <Hero />
         <Features />
         <Services />
-        <HowItWorks />
         <LaunchSection />
         <CTA />
       </main>

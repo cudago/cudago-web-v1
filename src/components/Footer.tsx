@@ -50,6 +50,11 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/partner" className="text-on-surface-variant hover:text-primary transition-all font-medium">
+                  Partner with Us
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="text-on-surface-variant hover:text-primary transition-all font-medium">
                   Contact Us
                 </Link>

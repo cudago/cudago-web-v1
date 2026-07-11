@@ -5,6 +5,7 @@ import { PrivacyPolicy } from './policies/PrivacyPolicy';
 import { Careers } from './company/Careers';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Contact } from './pages/Contact';
+import { Partner } from './pages/Partner';
 import { Apply } from './pages/Apply';
 import { UserAppDownload } from './pages/app/user/Download';
 import { UserAppDeleteAccount } from './pages/app/user/DeleteAccount';
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/download" element={<Navigate to="/app/user/download" replace />} />
         <Route path="/delete-account" element={<Navigate to="/app/user/delete-account" replace />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/partner" element={<Partner />} />
         <Route path="/apply" element={<Apply />} />
       </Routes>
     </Router>

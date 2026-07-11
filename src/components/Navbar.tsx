@@ -12,7 +12,6 @@ export const Navbar = () => {
 
   const navLinks = [
     { name: 'Services', href: isHome ? '#services' : '/#services' },
-    { name: 'How it Works', href: isHome ? '#how-it-works' : '/#how-it-works' },
     { name: 'Download', href: isHome ? '#download' : '/#download' },
   ];
 

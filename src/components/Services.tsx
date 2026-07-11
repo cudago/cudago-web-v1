@@ -1,102 +1,116 @@
-import { useRef } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Utensils, HeartHandshake, Car, ChevronLeft, ChevronRight, Wrench } from 'lucide-react';
-import { Card } from './ui/Card';
+
+import cleaningImg from '../../images/cleaning.jpg';
+import cookingImg from '../../images/cooking.jpg';
+import babysittingImg from '../../images/babysitting.jpg';
+import elderlyCareImg from '../../images/elderly-care.jpg';
+import houseCaretakerImg from '../../images/house-caretaker.jpg';
+import laundryImg from '../../images/laundry.jpg';
+import tutoringImg from '../../images/tutoring.jpg';
+import personalTrainingImg from '../../images/personal-training.jpg';
+import beautyImg from '../../images/beauty-and-grooming.jpg';
 
 export const Services = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const { current } = scrollRef;
-      const scrollAmount = direction === 'left' ? -400 : 400;
-      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
-
   const services = [
     {
-      icon: <Sparkles className="text-primary" size={32} />,
       title: 'Cleaning',
+      image: cleaningImg,
       description: 'Routine home cleaning and deep cleaning support for apartments and family homes.',
     },
     {
-      icon: <Utensils className="text-primary" size={32} />,
       title: 'Cooking',
+      image: cookingImg,
       description: 'Daily cooks and meal-prep help for busy households.',
     },
     {
-      icon: <HeartHandshake className="text-primary" size={32} />,
-      title: 'Care Support',
-      description: 'Assistance for children, elders, and family members who need extra help at home.',
+      title: 'Child Care',
+      image: babysittingImg,
+      description: 'Trusted babysitters and nannies for active child support.',
     },
     {
-      icon: <Car className="text-primary" size={32} />,
-      title: 'Drivers',
-      description: 'Driver support for planned local commutes and household travel needs.',
+      title: 'Elderly Care',
+      image: elderlyCareImg,
+      description: 'Empathetic caretakers for elder care, companionship, and daily assistance.',
     },
     {
-      icon: <Wrench className="text-primary" size={32} />,
-      title: 'Repairs',
-      description: 'Plumbing, electrical, appliance, and other home maintenance requests.',
+      title: 'Laundry & Ironing',
+      image: laundryImg,
+      description: 'Professional wash, fold, and ironing services collected right at your door.',
+    },
+    {
+      title: 'Beauty & Grooming',
+      image: beautyImg,
+      description: 'Salon services, haircuts, massages, and grooming at home.',
+    },
+    {
+      title: 'Home Tutoring',
+      image: tutoringImg,
+      description: 'Qualified home tutors for school subjects and skill development.',
+    },
+    {
+      title: 'House Caretaker',
+      image: houseCaretakerImg,
+      description: 'Security and caretaker support to keep your house safe.',
+    },
+    {
+      title: 'Personal Training',
+      image: personalTrainingImg,
+      description: 'Fitness coaches and trainers for customized home workout sessions.',
     },
   ];
 
   return (
-    <section id="services" className="py-24 px-6 overflow-hidden">
+    <section id="services" className="py-24 px-6 bg-surface-container-lowest">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">Our Services</h2>
-            <p className="text-xl text-on-surface-variant">
-              Practical help for the tasks that keep a home running.
-            </p>
-          </div>
-          <div className="gap-3 hidden sm:flex">
-            <button
-              onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-surface-container-high flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-surface-container-high flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
-              aria-label="Scroll right"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
+        
+        {/* Section Title */}
+        <div className="max-w-2xl mb-16 text-left">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight leading-tight font-headline">
+            Our Services
+          </h2>
+          <p className="text-lg text-on-surface-variant font-medium">
+            Practical help for the tasks that keep a home running.
+          </p>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 pb-8 -mx-6 px-6 md:mx-0 md:px-0"
-        >
+        {/* Minimal Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="min-w-[85vw] sm:min-w-[350px] lg:min-w-[400px] snap-start flex-shrink-0"
+              transition={{ delay: index * 0.05, duration: 0.4 }}
+              className="group"
             >
-              <Card className="h-full border-none shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-32 rounded-2xl bg-primary-fixed flex items-center justify-center m-8 mb-0">
-                  {service.icon}
+              <div className="flex gap-5 p-5 bg-white rounded-[2rem] border border-surface-container-low hover:border-primary/20 hover:shadow-md transition-all duration-300 h-full items-start">
+                
+                {/* Minimal Rounded Thumbnail */}
+                <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-surface-container-low shadow-sm">
+                  <img
+                    src={service.image}
+                    alt={`${service.title} service`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
                 </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold mb-3 text-on-surface">{service.title}</h3>
-                  <p className="text-on-surface-variant leading-relaxed">
+                
+                {/* Content */}
+                <div className="min-w-0">
+                  <h3 className="text-base font-extrabold text-on-surface mb-1 group-hover:text-primary transition-colors font-headline">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs text-on-surface-variant leading-relaxed font-medium">
                     {service.description}
                   </p>
                 </div>
-              </Card>
+
+              </div>
             </motion.div>
           ))}
         </div>
+        
       </div>
     </section>
   );
