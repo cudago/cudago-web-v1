@@ -15,7 +15,7 @@ export const Home = () => {
         <Features />
         <Services />
         <LaunchSection />
-        <CTA />
+        {/* <CTA /> */}
       </main>
       <Footer />
     </div>
