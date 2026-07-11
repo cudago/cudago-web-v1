@@ -3,15 +3,28 @@ import { useSearchParams } from 'react-router-dom';
 import { PageLayout } from '../components/PageLayout';
 import { Button } from '../components/ui/Button';
 import { CheckSquare, AlertCircle, Loader2 } from 'lucide-react';
-import { db, storage, isFirebaseConfigured } from '../firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc } from 'firebase/firestore';
+import { storage, databases, ID, isAppwriteConfigured, appwriteConfig } from '../appwrite';
+
+const mapQueryRoleToEnum = (roleValue: string): string => {
+  switch (roleValue?.toLowerCase()) {
+    case 'design':
+      return 'designer';
+    case 'engineering':
+    case 'dev-intern':
+      return 'developer';
+    case 'ops':
+    case 'success':
+      return 'manager';
+    case 'marketing-intern':
+      return 'analyst';
+    default:
+      return roleValue;
+  }
+};
 
 export const Apply = () => {
   const [searchParams] = useSearchParams();
-  const initialRole = searchParams.get('role') || '';
-
-  const [role, setRole] = useState(initialRole);
+  const [role, setRole] = useState(() => mapQueryRoleToEnum(searchParams.get('role') || ''));
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [linkedin, setLinkedin] = useState('');
@@ -26,10 +39,11 @@ export const Apply = () => {
 
   // Sync state if query param changes
   useEffect(() => {
-    if (initialRole) {
-      setRole(initialRole);
+    const r = searchParams.get('role');
+    if (r) {
+      setRole(mapQueryRoleToEnum(r));
     }
-  }, [initialRole]);
+  }, [searchParams]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -69,9 +83,9 @@ export const Apply = () => {
       return;
     }
 
-    if (!isFirebaseConfigured || !db || !storage) {
+    if (!isAppwriteConfigured || !databases || !storage) {
       setError(
-        'Firebase database configuration is missing. Please provide your Firebase credentials in the `.env` file at the root of the project.'
+        'Appwrite configuration is missing. Please provide your Appwrite credentials in the `.env` file at the root of the project.'
       );
       return;
     }
@@ -79,21 +93,31 @@ export const Apply = () => {
     setLoading(true);
 
     try {
-      // 1. Upload file to Firebase Storage
-      const storageRef = ref(storage, `resumes/${Date.now()}_${file.name}`);
-      const uploadResult = await uploadBytes(storageRef, file);
-      const resumeUrl = await getDownloadURL(uploadResult.ref);
+      // 1. Upload file to Appwrite Storage
+      const uploadedFile = await storage.createFile(
+        appwriteConfig.bucketId,
+        ID.unique(),
+        file
+      );
 
-      // 2. Add document to Firestore DB
-      await addDoc(collection(db, 'applications'), {
-        role,
-        name,
-        email,
-        linkedin,
-        portfolio,
-        resumeUrl,
-        submittedAt: new Date().toISOString()
-      });
+      // 2. Get file view URL
+      const resumeUrl = storage.getFileView(appwriteConfig.bucketId, uploadedFile.$id).toString();
+
+      // 3. Add document to Appwrite DB
+      await databases.createDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.collectionId,
+        ID.unique(),
+        {
+          desiredRole: role,
+          name,
+          email,
+          linkedinProfile: linkedin,
+          portfolio: portfolio || null,
+          resumeUrl,
+          applicationStatus: 'submitted'
+        }
+      );
 
       setSubmitted(true);
     } catch (err: any) {
@@ -137,13 +161,10 @@ export const Apply = () => {
             required
           >
             <option value="">Select a role...</option>
-            <option value="design">Senior Product Designer</option>
-            <option value="engineering">Full Stack Engineer (React/Node)</option>
-            <option value="marketing-intern">Marketing Intern</option>
-            <option value="dev-intern">Development Intern</option>
-            <option value="ops">Operations Manager</option>
-            <option value="success">Customer Success Lead</option>
-            <option value="other">Other / General Application</option>
+            <option value="developer">Developer</option>
+            <option value="designer">Designer</option>
+            <option value="manager">Manager</option>
+            <option value="analyst">Analyst</option>
           </select>
         </div>
         <div>
