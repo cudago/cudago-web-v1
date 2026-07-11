@@ -16,7 +16,7 @@ export const CTA = () => {
             <Button size="xl">Download App</Button>
           </a>
           <Link to="/contact">
-            <Button variant="outline" size="xl">Contact Us</Button>
+            <Button variant="outline" size="xl">Contact Support</Button>
           </Link>
         </div>
       </div>
