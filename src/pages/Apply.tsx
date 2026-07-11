@@ -5,26 +5,16 @@ import { Button } from '../components/ui/Button';
 import { CheckSquare, AlertCircle, Loader2 } from 'lucide-react';
 import { storage, databases, ID, isAppwriteConfigured, appwriteConfig } from '../appwrite';
 
-const mapQueryRoleToEnum = (roleValue: string): string => {
-  switch (roleValue?.toLowerCase()) {
-    case 'design':
-      return 'designer';
-    case 'engineering':
-    case 'dev-intern':
-      return 'developer';
-    case 'ops':
-    case 'success':
-      return 'manager';
-    case 'marketing-intern':
-      return 'analyst';
-    default:
-      return roleValue;
-  }
+const getFriendlyRoleName = (roleParam: string): string => {
+  if (!roleParam) return 'General Application';
+  return roleParam
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
 export const Apply = () => {
   const [searchParams] = useSearchParams();
-  const [role, setRole] = useState(() => mapQueryRoleToEnum(searchParams.get('role') || ''));
+  const roleParam = searchParams.get('role') || '';
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [linkedin, setLinkedin] = useState('');
@@ -36,14 +26,6 @@ export const Apply = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
-
-  // Sync state if query param changes
-  useEffect(() => {
-    const r = searchParams.get('role');
-    if (r) {
-      setRole(mapQueryRoleToEnum(r));
-    }
-  }, [searchParams]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -72,11 +54,6 @@ export const Apply = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
-    if (!role) {
-      setError('Please select a role.');
-      return;
-    }
 
     if (!file) {
       setError('Please upload your resume.');
@@ -109,7 +86,7 @@ export const Apply = () => {
         appwriteConfig.collectionId,
         ID.unique(),
         {
-          desiredRole: role,
+          desiredRole: getFriendlyRoleName(roleParam),
           name,
           email,
           linkedinProfile: linkedin,
@@ -154,18 +131,9 @@ export const Apply = () => {
 
         <div>
           <label className="block text-sm font-bold mb-2">Role</label>
-          <select 
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" 
-            required
-          >
-            <option value="">Select a role...</option>
-            <option value="developer">Developer</option>
-            <option value="designer">Designer</option>
-            <option value="manager">Manager</option>
-            <option value="analyst">Analyst</option>
-          </select>
+          <div className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low text-on-surface-variant font-semibold">
+            {getFriendlyRoleName(roleParam)}
+          </div>
         </div>
         <div>
           <label className="block text-sm font-bold mb-2">Full Name</label>
