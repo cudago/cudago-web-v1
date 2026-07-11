@@ -1,10 +1,14 @@
-import { ReactNode, ButtonHTMLAttributes } from 'react';
+import React, { ReactNode, ButtonHTMLAttributes } from 'react';
 import { motion } from 'motion/react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | ((e: any) => void);
+  type?: 'submit' | 'reset' | 'button';
+  disabled?: boolean;
 }
 
 export const Button = ({
