@@ -1,12 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, ButtonHTMLAttributes } from 'react';
 import { motion } from 'motion/react';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg' | 'xl';
-  className?: string;
-  onClick?: () => void;
 }
 
 export const Button = ({
@@ -15,8 +13,11 @@ export const Button = ({
   size = 'md',
   className = '',
   onClick,
+  type = 'button',
+  disabled = false,
+  ...props
 }: ButtonProps) => {
-  const baseStyles = 'inline-flex items-center justify-center font-bold transition-all active:scale-95 rounded-full cursor-pointer';
+  const baseStyles = 'inline-flex items-center justify-center font-bold transition-all active:scale-95 rounded-full cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100';
   
   const variants = {
     primary: 'bg-primary-container text-on-primary hover:bg-primary shadow-lg hover:shadow-xl',
@@ -34,12 +35,16 @@ export const Button = ({
 
   return (
     <motion.button
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={disabled ? {} : { y: -2 }}
+      whileTap={disabled ? {} : { scale: 0.98 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       onClick={onClick}
+      type={type}
+      disabled={disabled}
+      {...props}
     >
       {children}
     </motion.button>
   );
 };
+

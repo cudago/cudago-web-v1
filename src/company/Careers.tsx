@@ -29,12 +29,14 @@ export const Careers = () => {
         <h2 className="text-2xl font-bold mb-6">Open Roles</h2>
         <div className="space-y-4">
           {[
-            { title: 'Senior Product Designer', location: 'Remote / Pune', type: 'Full-time' },
-            { title: 'Full Stack Engineer (React/Node)', location: 'Remote / Pune', type: 'Full-time' },
-            { title: 'Operations Manager', location: 'Pune', type: 'Full-time' },
-            { title: 'Customer Success Lead', location: 'Pune', type: 'Full-time' },
+            { id: 'design', title: 'Senior Product Designer', location: 'Remote / Pune', type: 'Full-time' },
+            { id: 'engineering', title: 'Full Stack Engineer (React/Node)', location: 'Remote / Pune', type: 'Full-time' },
+            { id: 'marketing-intern', title: 'Marketing Intern', location: 'Remote / Pune', type: 'Internship' },
+            { id: 'dev-intern', title: 'Development Intern', location: 'Remote / Pune', type: 'Internship' },
+            { id: 'ops', title: 'Operations Manager', location: 'Pune', type: 'Full-time' },
+            { id: 'success', title: 'Customer Success Lead', location: 'Pune', type: 'Full-time' },
           ].map((role) => (
-            <Link key={role.title} to="/apply" className="flex justify-between items-center p-6 bg-white border border-surface-container-high rounded-2xl hover:border-primary transition-all cursor-pointer group block">
+            <Link key={role.title} to={`/apply?role=${role.id}`} className="flex justify-between items-center p-6 bg-white border border-surface-container-high rounded-2xl hover:border-primary transition-all cursor-pointer group block">
               <div>
                 <h4 className="font-bold text-lg group-hover:text-primary transition-colors">{role.title}</h4>
                 <p className="text-on-surface-variant text-sm">{role.location} • {role.type}</p>
@@ -47,10 +49,11 @@ export const Careers = () => {
 
       <section>
         <p className="text-center text-on-surface-variant italic">
-          Don't see a role that fits? Send your resume to <span className="text-primary font-bold">careers@cudago.com</span> and tell us how you can help.
+          Don't see a role that fits? Send your resume to <span className="text-primary font-bold">cudagoplatform@gmail.com</span> and tell us how you can help.
         </p>
       </section>
     </PolicyLayout>
   );
 };
+
 

@@ -1,10 +1,108 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { PageLayout } from '../components/PageLayout';
 import { Button } from '../components/ui/Button';
-import { CheckSquare } from 'lucide-react';
+import { CheckSquare, AlertCircle, Loader2 } from 'lucide-react';
+import { db, storage, isFirebaseConfigured } from '../firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc } from 'firebase/firestore';
 
 export const Apply = () => {
+  const [searchParams] = useSearchParams();
+  const initialRole = searchParams.get('role') || '';
+
+  const [role, setRole] = useState(initialRole);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [portfolio, setPortfolio] = useState('');
+  
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState<string | null>(null);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+
+  // Sync state if query param changes
+  useEffect(() => {
+    if (initialRole) {
+      setRole(initialRole);
+    }
+  }, [initialRole]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (!selectedFile) {
+      setFile(null);
+      setFileError(null);
+      return;
+    }
+
+    if (selectedFile.type !== 'application/pdf') {
+      setFileError('Please upload a PDF file.');
+      setFile(null);
+      return;
+    }
+
+    if (selectedFile.size > 5 * 1024 * 1024) {
+      setFileError('File size must be less than 5MB.');
+      setFile(null);
+      return;
+    }
+
+    setFileError(null);
+    setFile(selectedFile);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!role) {
+      setError('Please select a role.');
+      return;
+    }
+
+    if (!file) {
+      setError('Please upload your resume.');
+      return;
+    }
+
+    if (!isFirebaseConfigured || !db || !storage) {
+      setError(
+        'Firebase database configuration is missing. Please provide your Firebase credentials in the `.env` file at the root of the project.'
+      );
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // 1. Upload file to Firebase Storage
+      const storageRef = ref(storage, `resumes/${Date.now()}_${file.name}`);
+      const uploadResult = await uploadBytes(storageRef, file);
+      const resumeUrl = await getDownloadURL(uploadResult.ref);
+
+      // 2. Add document to Firestore DB
+      await addDoc(collection(db, 'applications'), {
+        role,
+        name,
+        email,
+        linkedin,
+        portfolio,
+        resumeUrl,
+        submittedAt: new Date().toISOString()
+      });
+
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error('Error submitting application:', err);
+      setError(err?.message || 'Failed to submit application. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (submitted) {
     return (
@@ -22,13 +120,27 @@ export const Apply = () => {
 
   return (
     <PageLayout title="Apply Now" subtitle="Join us in building the future of hyperlocal services.">
-      <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {error && (
+          <div className="p-4 bg-red-50 text-red-800 rounded-2xl flex items-start gap-3 border border-red-200">
+            <AlertCircle className="shrink-0 mt-0.5" size={20} />
+            <div className="text-sm font-semibold">{error}</div>
+          </div>
+        )}
+
         <div>
           <label className="block text-sm font-bold mb-2">Role</label>
-          <select className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" required>
+          <select 
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" 
+            required
+          >
             <option value="">Select a role...</option>
             <option value="design">Senior Product Designer</option>
             <option value="engineering">Full Stack Engineer (React/Node)</option>
+            <option value="marketing-intern">Marketing Intern</option>
+            <option value="dev-intern">Development Intern</option>
             <option value="ops">Operations Manager</option>
             <option value="success">Customer Success Lead</option>
             <option value="other">Other / General Application</option>
@@ -36,22 +148,74 @@ export const Apply = () => {
         </div>
         <div>
           <label className="block text-sm font-bold mb-2">Full Name</label>
-          <input type="text" className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" required />
+          <input 
+            type="text" 
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" 
+            required 
+          />
         </div>
         <div>
           <label className="block text-sm font-bold mb-2">Email Address</label>
-          <input type="email" className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" required />
+          <input 
+            type="email" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" 
+            required 
+          />
         </div>
         <div>
           <label className="block text-sm font-bold mb-2">LinkedIn Profile URL</label>
-          <input type="url" placeholder="https://linkedin.com/in/..." className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" required />
+          <input 
+            type="url" 
+            value={linkedin}
+            onChange={(e) => setLinkedin(e.target.value)}
+            placeholder="https://linkedin.com/in/..." 
+            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" 
+            required 
+          />
         </div>
         <div>
           <label className="block text-sm font-bold mb-2">Portfolio / Personal Website (Optional)</label>
-          <input type="url" placeholder="https://..." className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" />
+          <input 
+            type="url" 
+            value={portfolio}
+            onChange={(e) => setPortfolio(e.target.value)}
+            placeholder="https://..." 
+            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all" 
+          />
         </div>
-        <Button size="lg" className="w-full mt-4">Submit Application</Button>
+        <div>
+          <label className="block text-sm font-bold mb-2">Resume / CV (PDF format, max 5MB)</label>
+          <input 
+            type="file" 
+            accept="application/pdf"
+            onChange={handleFileChange}
+            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary hover:file:bg-primary/20" 
+            required 
+          />
+          {fileError && <p className="text-red-500 text-sm mt-1">{fileError}</p>}
+        </div>
+
+        <Button 
+          type="submit" 
+          size="lg" 
+          className="w-full mt-4" 
+          disabled={loading || !!fileError}
+        >
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <Loader2 className="animate-spin" size={20} />
+              Submitting Application...
+            </span>
+          ) : (
+            'Submit Application'
+          )}
+        </Button>
       </form>
     </PageLayout>
   );
 };
+
