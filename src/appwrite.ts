@@ -3,14 +3,16 @@ import { Client, Storage, Databases, ID } from 'appwrite';
 const endpoint = import.meta.env.VITE_APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1';
 const projectId = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 const databaseId = import.meta.env.VITE_APPWRITE_DATABASE_ID;
-const collectionId = import.meta.env.VITE_APPWRITE_COLLECTION_ID;
 const bucketId = import.meta.env.VITE_APPWRITE_BUCKET_ID;
+
+const collectionId = 'applications';
+const contactCollectionId = 'contacts';
+const partnershipCollectionId = 'partnerships';
 
 // Check if Appwrite is configured in .env
 export const isAppwriteConfigured = !!(
   projectId &&
   databaseId &&
-  collectionId &&
   bucketId
 );
 
@@ -30,5 +32,7 @@ export { ID };
 export const appwriteConfig = {
   databaseId,
   collectionId,
+  contactCollectionId,
+  partnershipCollectionId,
   bucketId
 };

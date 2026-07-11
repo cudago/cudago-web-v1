@@ -22,14 +22,13 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { databases, ID, isAppwriteConfigured, appwriteConfig } from '../appwrite';
 
-interface SubmissionData {
-  desiredRole: string;
-  name: string;
+interface PartnershipSubmission {
+  agencyName: string;
+  contactName: string;
   email: string;
-  linkedinProfile: string;
-  portfolio: string;
-  resumeUrl: string;
-  applicationStatus: string;
+  phone: string;
+  message: string;
+  status: string;
 }
 
 export const Partner = () => {
@@ -71,21 +70,18 @@ export const Partner = () => {
     setLoading(true);
 
     try {
-      const agencyCollectionId = import.meta.env.VITE_APPWRITE_AGENCY_COLLECTION_ID || appwriteConfig.collectionId;
-
-      const submission: SubmissionData = {
-        desiredRole: `Agency Lead: ${agencyName}`,
-        name: contactName,
-        email: email,
-        linkedinProfile: `Phone: ${phone}`,
-        portfolio: message,
-        resumeUrl: 'Contact Inquiry: Agency Partnership',
-        applicationStatus: 'submitted'
+      const submission: PartnershipSubmission = {
+        agencyName,
+        contactName,
+        email,
+        phone,
+        message,
+        status: 'submitted'
       };
 
       await databases.createDocument(
         appwriteConfig.databaseId,
-        agencyCollectionId,
+        appwriteConfig.partnershipCollectionId,
         ID.unique(),
         submission
       );

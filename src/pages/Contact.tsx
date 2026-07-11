@@ -20,14 +20,13 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { databases, ID, isAppwriteConfigured, appwriteConfig } from '../appwrite';
 
-interface SubmissionData {
-  desiredRole: string;
+interface ContactSubmission {
   name: string;
   email: string;
-  linkedinProfile: string;
-  portfolio: string;
-  resumeUrl: string;
-  applicationStatus: string;
+  phone: string;
+  subject: string;
+  message: string;
+  status: string;
 }
 
 export const Contact = () => {
@@ -60,19 +59,18 @@ export const Contact = () => {
     setLoading(true);
 
     try {
-      const submission: SubmissionData = {
-        desiredRole: `General Inquiry: ${generalSubject}`,
+      const submission: ContactSubmission = {
         name: generalName,
         email: generalEmail,
-        linkedinProfile: generalPhone ? `Phone: ${generalPhone}` : 'No phone provided',
-        portfolio: generalMessage,
-        resumeUrl: 'Contact Inquiry: General Support',
-        applicationStatus: 'submitted'
+        phone: generalPhone || 'Not provided',
+        subject: generalSubject,
+        message: generalMessage,
+        status: 'submitted'
       };
 
       await databases.createDocument(
         appwriteConfig.databaseId,
-        appwriteConfig.collectionId,
+        appwriteConfig.contactCollectionId,
         ID.unique(),
         submission
       );
