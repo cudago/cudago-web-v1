@@ -20,13 +20,6 @@ export const Hero = () => {
           <p className="text-xl md:text-2xl text-on-surface-variant mb-10 max-w-xl">
             Cudago helps families book verified help for cleaning, cooking, repairs, caregiving, and everyday home needs.
           </p>
-
-          <div className="flex flex-wrap gap-4 mb-12">
-            <a href="#download">
-              <Button size="lg">Download App</Button>
-            </a>
-          </div>
-
           <div className="flex flex-wrap gap-6 items-center">
             <div className="flex items-center gap-2">
               <ShieldCheck className="text-primary" size={20} />

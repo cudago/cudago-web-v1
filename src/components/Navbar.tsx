@@ -10,10 +10,10 @@ export const Navbar = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
-  const navLinks = [
-    { name: 'Services', href: isHome ? '#services' : '/#services' },
-    { name: 'Download', href: isHome ? '#download' : '/#download' },
-  ];
+  // const navLinks = [
+  //   { name: 'Services', href: isHome ? '#services' : '/#services' },
+  //   { name: 'Download', href: isHome ? '#download' : '/#download' },
+  // ];
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav shadow-sm">
@@ -21,19 +21,6 @@ export const Navbar = () => {
         <Link to="/" className="text-2xl font-extrabold tracking-tight text-primary font-headline">
           Cudago
         </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-on-surface-variant hover:text-primary transition-all font-medium"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
 
         <div className="hidden md:block">
           <a href={isHome ? '#download' : '/#download'}>
@@ -46,29 +33,6 @@ export const Navbar = () => {
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-surface border-t border-surface-container-high px-6 py-6 flex flex-col gap-4"
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-lg font-medium text-on-surface-variant"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-          <a href={isHome ? '#download' : '/#download'} onClick={() => setIsOpen(false)}>
-            <Button size="lg" className="w-full">Download App</Button>
-          </a>
-        </motion.div>
-      )}
     </nav>
   );
 };
