@@ -13,7 +13,7 @@ export const Navbar = () => {
   const navLinks = [
     { name: 'Services', href: isHome ? '#services' : '/#services' },
     { name: 'How it Works', href: isHome ? '#how-it-works' : '/#how-it-works' },
-    { name: 'Safety', href: isHome ? '#safety' : '/#safety' },
+    { name: 'Download', href: isHome ? '#download' : '/#download' },
   ];
 
   return (
@@ -37,9 +37,9 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden md:block">
-          <Link to="/waitlist">
-            <Button size="md">Join Waitlist</Button>
-          </Link>
+          <a href={isHome ? '#download' : '/#download'}>
+            <Button size="md">Download App</Button>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -65,12 +65,11 @@ export const Navbar = () => {
               {link.name}
             </a>
           ))}
-          <Link to="/waitlist" onClick={() => setIsOpen(false)}>
-            <Button size="lg" className="w-full">Join Waitlist</Button>
-          </Link>
+          <a href={isHome ? '#download' : '/#download'} onClick={() => setIsOpen(false)}>
+            <Button size="lg" className="w-full">Download App</Button>
+          </a>
         </motion.div>
       )}
     </nav>
   );
 };
-

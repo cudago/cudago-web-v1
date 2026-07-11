@@ -2,18 +2,18 @@ export const HowItWorks = () => {
   const steps = [
     {
       number: '1',
-      title: 'Choose Service',
-      description: 'Select from our verified list of services tailored for your specific housing society needs.',
+      title: 'Choose a service',
+      description: 'Select the home service you need and share the basic job details.',
     },
     {
       number: '2',
-      title: 'Pick Your Time',
-      description: 'Instant booking or schedule for later. Our algorithms match you with the nearest helper.',
+      title: 'Pick a time',
+      description: 'Schedule a slot that works for your household.',
     },
     {
       number: '3',
-      title: 'Relax, We\'re On It',
-      description: 'Track your helper in real-time. We manage the verification and payment securely.',
+      title: 'Manage in app',
+      description: 'Track the request, get updates, and keep the service record in one place.',
     },
   ];
 
