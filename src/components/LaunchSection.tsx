@@ -1,6 +1,6 @@
 import { Apple, Play, Smartphone } from 'lucide-react';
 import { Button } from './ui/Button';
-import cudagoUserHome from '../../images/cudago-user-home.png';
+import cudagoUserHome from '../../images/cudago-user-home.jpg';
 
 export const LaunchSection = () => {
   return (
