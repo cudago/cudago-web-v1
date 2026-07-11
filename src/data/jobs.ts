@@ -11,58 +11,58 @@ export interface Job {
 }
 
 export const JOBS: Job[] = [
-  {
-    id: 'CDG-101',
-    title: 'Senior Product Designer',
-    location: 'Remote / Pune',
-    type: 'Full-time',
-    department: 'Design',
-    about: 'At Cudago, design is at the core of everything we do. As our Senior Product Designer, you will lead the user experience and interface design for our consumer app, provider app, and internal admin panels, creating seamless and beautiful experiences that simplify hyperlocal service booking.',
-    responsibilities: [
-      'Own the end-to-end design lifecycle, from user research and wireframing to high-fidelity UI and interactive prototyping.',
-      'Design intuitive user flows for service discovery, scheduling, booking, real-time tracking, and payments.',
-      'Build, scale, and maintain our design system across iOS, Android, and Web platforms.',
-      'Collaborate with engineering to ensure implementation matches design specs and maintains a high quality bar.'
-    ],
-    requirements: [
-      '3+ years of experience designing consumer-facing mobile and web products.',
-      'Strong portfolio showing end-to-end design thinking, clean visual craft, and structured design systems.',
-      'Fluency in Figma and prototyping tools.',
-      'Strong communication skills and ability to thrive in a fast-paced environment.'
-    ],
-    benefits: [
-      'Competitive compensation & performance bonuses',
-      'Flexible work hours & remote-friendly culture',
-      'Comprehensive health insurance',
-      'Opportunity to shape a product from the ground up'
-    ]
-  },
-  {
-    id: 'CDG-102',
-    title: 'Full Stack Engineer (React/Node)',
-    location: 'Remote / Pune',
-    type: 'Full-time',
-    department: 'Engineering',
-    about: 'We are looking for a versatile Full Stack Engineer to join our core engineering team. You will be building backend services, internal tooling, and client-facing interfaces that power Cudago\'s hyperlocal concierge service. You will have full ownership of features and directly impact the product roadmap.',
-    responsibilities: [
-      'Develop and maintain robust APIs using Node.js/Express/TypeScript.',
-      'Build responsive, high-performance web applications using React and Tailwind CSS.',
-      'Optimize data flow, caching, and background job scheduling for real-time services.',
-      'Integrate third-party APIs for payments, map routing, authentication, and push notifications.'
-    ],
-    requirements: [
-      '3+ years of production experience with modern JavaScript/TypeScript, React, Node.js.',
-      'Experience with databases (SQL/PostgreSQL, NoSQL) and schema design.',
-      'Familiarity with state management, web performance optimization, and responsive layouts.',
-      'Understanding of RESTful services, serverless architectures, and basic cloud infrastructure.'
-    ],
-    benefits: [
-      'Competitive compensation & equity options',
-      'Flexible work hours & remote-friendly culture',
-      'Comprehensive health insurance',
-      'Latest hardware setup (MacBook Pro/Monitor support)'
-    ]
-  },
+  // {
+  //   id: 'CDG-101',
+  //   title: 'Senior Product Designer',
+  //   location: 'Remote / Pune',
+  //   type: 'Full-time',
+  //   department: 'Design',
+  //   about: 'At Cudago, design is at the core of everything we do. As our Senior Product Designer, you will lead the user experience and interface design for our consumer app, provider app, and internal admin panels, creating seamless and beautiful experiences that simplify hyperlocal service booking.',
+  //   responsibilities: [
+  //     'Own the end-to-end design lifecycle, from user research and wireframing to high-fidelity UI and interactive prototyping.',
+  //     'Design intuitive user flows for service discovery, scheduling, booking, real-time tracking, and payments.',
+  //     'Build, scale, and maintain our design system across iOS, Android, and Web platforms.',
+  //     'Collaborate with engineering to ensure implementation matches design specs and maintains a high quality bar.'
+  //   ],
+  //   requirements: [
+  //     '3+ years of experience designing consumer-facing mobile and web products.',
+  //     'Strong portfolio showing end-to-end design thinking, clean visual craft, and structured design systems.',
+  //     'Fluency in Figma and prototyping tools.',
+  //     'Strong communication skills and ability to thrive in a fast-paced environment.'
+  //   ],
+  //   benefits: [
+  //     'Competitive compensation & performance bonuses',
+  //     'Flexible work hours & remote-friendly culture',
+  //     'Comprehensive health insurance',
+  //     'Opportunity to shape a product from the ground up'
+  //   ]
+  // },
+  // {
+  //   id: 'CDG-102',
+  //   title: 'Full Stack Engineer (React/Node)',
+  //   location: 'Remote / Pune',
+  //   type: 'Full-time',
+  //   department: 'Engineering',
+  //   about: 'We are looking for a versatile Full Stack Engineer to join our core engineering team. You will be building backend services, internal tooling, and client-facing interfaces that power Cudago\'s hyperlocal concierge service. You will have full ownership of features and directly impact the product roadmap.',
+  //   responsibilities: [
+  //     'Develop and maintain robust APIs using Node.js/Express/TypeScript.',
+  //     'Build responsive, high-performance web applications using React and Tailwind CSS.',
+  //     'Optimize data flow, caching, and background job scheduling for real-time services.',
+  //     'Integrate third-party APIs for payments, map routing, authentication, and push notifications.'
+  //   ],
+  //   requirements: [
+  //     '3+ years of production experience with modern JavaScript/TypeScript, React, Node.js.',
+  //     'Experience with databases (SQL/PostgreSQL, NoSQL) and schema design.',
+  //     'Familiarity with state management, web performance optimization, and responsive layouts.',
+  //     'Understanding of RESTful services, serverless architectures, and basic cloud infrastructure.'
+  //   ],
+  //   benefits: [
+  //     'Competitive compensation & equity options',
+  //     'Flexible work hours & remote-friendly culture',
+  //     'Comprehensive health insurance',
+  //     'Latest hardware setup (MacBook Pro/Monitor support)'
+  //   ]
+  // },
   {
     id: 'CDG-103',
     title: 'Marketing Intern',
@@ -141,30 +141,30 @@ export const JOBS: Job[] = [
       'Direct exposure to business-critical strategy and metrics'
     ]
   },
-  {
-    id: 'CDG-106',
-    title: 'Customer Success Lead',
-    location: 'Pune',
-    type: 'Full-time',
-    department: 'Operations',
-    about: 'We\'re looking for a Customer Success Lead to build and manage our customer happiness team. You will be the voice of Cudago, helping customers solve their queries, managing escalations, and setting standard operating procedures to turn every user experience into a success story.',
-    responsibilities: [
-      'Establish customer success workflows, response SLAs, and quality metrics.',
-      'Directly address high-priority user inquiries and complaints with empathy and speed.',
-      'Collaborate with the operations team to resolve service provider issues affecting customers.',
-      'Track customer satisfaction (CSAT) scores and suggest product/process enhancements.'
-    ],
-    requirements: [
-      '2+ years of experience in a customer success, customer experience, or support supervisor role.',
-      'Strong empathy and passion for helping people and solving problems.',
-      'Excellent verbal and written communication skills (English and Marathi/Hindi is a big plus).',
-      'Comfortable using support desks, live chat software, and CRM tools.'
-    ],
-    benefits: [
-      'Competitive compensation package',
-      'Modern, collaboration-first workplace in Pune',
-      'Health insurance & wellness benefits',
-      'Career growth paths in a rapidly scaling startup'
-    ]
-  }
+  // {
+  //   id: 'CDG-106',
+  //   title: 'Customer Success Lead',
+  //   location: 'Pune',
+  //   type: 'Full-time',
+  //   department: 'Operations',
+  //   about: 'We\'re looking for a Customer Success Lead to build and manage our customer happiness team. You will be the voice of Cudago, helping customers solve their queries, managing escalations, and setting standard operating procedures to turn every user experience into a success story.',
+  //   responsibilities: [
+  //     'Establish customer success workflows, response SLAs, and quality metrics.',
+  //     'Directly address high-priority user inquiries and complaints with empathy and speed.',
+  //     'Collaborate with the operations team to resolve service provider issues affecting customers.',
+  //     'Track customer satisfaction (CSAT) scores and suggest product/process enhancements.'
+  //   ],
+  //   requirements: [
+  //     '2+ years of experience in a customer success, customer experience, or support supervisor role.',
+  //     'Strong empathy and passion for helping people and solving problems.',
+  //     'Excellent verbal and written communication skills (English and Marathi/Hindi is a big plus).',
+  //     'Comfortable using support desks, live chat software, and CRM tools.'
+  //   ],
+  //   benefits: [
+  //     'Competitive compensation package',
+  //     'Modern, collaboration-first workplace in Pune',
+  //     'Health insurance & wellness benefits',
+  //     'Career growth paths in a rapidly scaling startup'
+  //   ]
+  // }
 ];
