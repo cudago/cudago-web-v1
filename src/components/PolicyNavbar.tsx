@@ -18,7 +18,6 @@ export const PolicyNavbar = () => {
 
   const companyLinks = [
     { name: 'Careers', path: '/company/careers' },
-    { name: 'Press Kit', path: '/company/press' },
   ];
 
   const activeLinks = isPolicy ? policyLinks : isCompany ? companyLinks : [];

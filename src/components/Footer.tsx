@@ -3,45 +3,90 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <footer className="bg-slate-50 rounded-t-[3rem] md:rounded-t-[5rem] mt-20">
-      <div className="max-w-7xl mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-12">
-        <div className="col-span-2 md:col-span-1">
-          <Link to="/" className="text-2xl font-bold text-primary font-headline mb-6 block">Cudago</Link>
-          <p className="text-slate-500 mb-8 max-w-xs">
-            A simple app for booking reliable home services.
-          </p>
-          <div className="flex gap-4">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all cursor-pointer">
-              <Instagram size={20} />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all cursor-pointer">
-              <Linkedin size={20} />
-            </a>
-            <a href="mailto:contact@cudago.com" className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all cursor-pointer">
-              <Mail size={20} />
-            </a>
+    <footer className="bg-surface-container-low rounded-t-[3rem] md:rounded-t-[5rem] mt-20 border-t border-surface-container-high">
+      <div className="max-w-7xl mx-auto px-8 pt-16 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-surface-container-high">
+          {/* Brand & Description Column */}
+          <div className="md:col-span-5 space-y-4">
+            <Link to="/" className="text-2xl font-bold text-primary font-headline block">
+              Cudago
+            </Link>
+            <p className="text-on-surface-variant text-sm md:text-base max-w-sm leading-relaxed">
+              Redefining how urban households manage daily needs with a trusted hyperlocal concierge for all your home services.
+            </p>
+            <div className="flex gap-3 pt-2">
+              <a 
+                href="#" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white border border-surface-container-high transition-all cursor-pointer"
+              >
+                <Instagram size={18} />
+              </a>
+              <a 
+                href="#" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white border border-surface-container-high transition-all cursor-pointer"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a 
+                href="mailto:contact@cudago.com" 
+                className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white border border-surface-container-high transition-all cursor-pointer"
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Links Column 1: Company */}
+          <div className="md:col-span-3">
+            <h4 className="font-bold text-primary mb-4 text-sm uppercase tracking-wider">Company</h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link to="/company/careers" className="text-on-surface-variant hover:text-primary transition-all font-medium">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-on-surface-variant hover:text-primary transition-all font-medium">
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Links Column 2: Legal & Support */}
+          <div className="md:col-span-4">
+            <h4 className="font-bold text-primary mb-4 text-sm uppercase tracking-wider">Legal & Security</h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link to="/policies/terms" className="text-on-surface-variant hover:text-primary transition-all font-medium">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link to="/policies/privacy" className="text-on-surface-variant hover:text-primary transition-all font-medium">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/app/user/delete-account" className="text-on-surface-variant hover:text-primary transition-all font-medium">
+                  Delete Account Request
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div>
-          <h4 className="font-bold text-primary mb-6">Company</h4>
-          <ul className="space-y-4">
-            <li><Link to="/company/careers" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Careers</Link></li>
-            <li><Link to="/company/press" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Press Kit</Link></li>
-          </ul>
+        {/* Bottom copyright / local tagline row */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs md:text-sm text-on-surface-variant font-medium">
+          <p>© 2026 Cudago. All rights reserved.</p>
+          <p className="flex items-center gap-1.5 text-center sm:text-right">
+            <span>Home services made local. Built with 🧡 in Pune.</span>
+          </p>
         </div>
-
-        <div>
-          <h4 className="font-bold text-primary mb-6">Legal</h4>
-          <ul className="space-y-4">
-            <li><Link to="/policies/terms" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Terms of Service</Link></li>
-            <li><Link to="/policies/privacy" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Privacy Policy</Link></li>
-            <li><Link to="/app/user/delete-account" className="text-slate-500 hover:text-primary hover:translate-x-1 inline-block transition-all">Delete Account</Link></li>
-          </ul>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-8 py-8 border-t border-slate-200 text-center text-slate-400 text-sm">
-        © 2026 Cudago. Home services made local.
       </div>
     </footer>
   );

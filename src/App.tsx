@@ -3,7 +3,6 @@ import { Home } from './Home';
 import { TermsOfService } from './policies/TermsOfService';
 import { PrivacyPolicy } from './policies/PrivacyPolicy';
 import { Careers } from './company/Careers';
-import { PressKit } from './company/PressKit';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Contact } from './pages/Contact';
 import { Apply } from './pages/Apply';
@@ -19,7 +18,6 @@ export default function App() {
         <Route path="/policies/terms" element={<TermsOfService />} />
         <Route path="/policies/privacy" element={<PrivacyPolicy />} />
         <Route path="/company/careers" element={<Careers />} />
-        <Route path="/company/press" element={<PressKit />} />
         <Route path="/app/user/download" element={<UserAppDownload />} />
         <Route path="/app/user/delete-account" element={<UserAppDeleteAccount />} />
         <Route path="/download" element={<Navigate to="/app/user/download" replace />} />
