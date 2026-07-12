@@ -1,8 +1,8 @@
-import { PolicyLayout } from './PolicyLayout';
+import { PageLayout } from '../components/PageLayout';
 
 export const TermsOfService = () => {
   return (
-    <PolicyLayout title="Terms of Service" lastUpdated="June 27, 2026">
+    <PageLayout title="Terms of Service" lastUpdated="June 27, 2026" useProse maxWidth="max-w-4xl">
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
         <p>
@@ -96,6 +96,6 @@ export const TermsOfService = () => {
           For questions about these Terms, contact us at cudagoplatform@gmail.com.
         </p>
       </section>
-    </PolicyLayout>
+    </PageLayout>
   );
 };

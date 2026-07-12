@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { databases, ID, isAppwriteConfigured, appwriteConfig } from '../appwrite';
+import { useIsApp } from '../hooks/useIsApp';
 
 interface ContactSubmission {
   name: string;
@@ -30,6 +31,7 @@ interface ContactSubmission {
 }
 
 export const Contact = () => {
+  const isApp = useIsApp();
   // Form State
   const [generalName, setGeneralName] = useState('');
   const [generalEmail, setGeneralEmail] = useState('');
@@ -85,10 +87,10 @@ export const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col">
-      <PolicyNavbar />
+    <div className={`min-h-screen ${isApp ? 'bg-white' : 'bg-surface'} flex flex-col`}>
+      {!isApp && <PolicyNavbar />}
       
-      <main className="pt-32 md:pt-36 pb-24 px-6 max-w-7xl mx-auto w-full flex-grow">
+      <main className={isApp ? "pt-6 pb-6 px-4 max-w-7xl mx-auto w-full flex-grow" : "pt-32 md:pt-36 pb-24 px-6 max-w-7xl mx-auto w-full flex-grow"}>
         
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -184,7 +186,11 @@ export const Contact = () => {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="bg-white p-8 md:p-12 rounded-[3.5rem] shadow-sm border border-surface-container-high relative"
+              className={`relative ${
+                isApp 
+                  ? 'bg-transparent p-0 border-0 shadow-none' 
+                  : 'bg-white p-8 md:p-12 rounded-[3.5rem] shadow-sm border border-surface-container-high'
+              }`}
             >
               <AnimatePresence mode="wait">
                 {!submitted ? (
@@ -364,7 +370,7 @@ export const Contact = () => {
 
       </main>
       
-      <Footer />
+      {!isApp && <Footer />}
     </div>
   );
 };

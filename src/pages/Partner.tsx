@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { PolicyNavbar } from '../components/PolicyNavbar';
 import { Footer } from '../components/Footer';
 import { Button } from '../components/ui/Button';
-import { 
-  Building2, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  CheckCircle2, 
-  TrendingUp, 
-  ShieldCheck, 
+import {
+  Building2,
+  Mail,
+  Phone,
+  MapPin,
+  CheckCircle2,
+  TrendingUp,
+  ShieldCheck,
   AlertCircle,
   Loader2,
   Sparkles,
@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { databases, ID, isAppwriteConfigured, appwriteConfig } from '../appwrite';
+import { useIsApp } from '../hooks/useIsApp';
 
 interface PartnershipSubmission {
   agencyName: string;
@@ -32,6 +33,7 @@ interface PartnershipSubmission {
 }
 
 export const Partner = () => {
+  const isApp = useIsApp();
   // Form State
   const [agencyName, setAgencyName] = useState('');
   const [contactName, setContactName] = useState('');
@@ -96,11 +98,11 @@ export const Partner = () => {
   };
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col">
-      <PolicyNavbar />
-      
-      <main className="pt-32 md:pt-36 pb-24 px-6 max-w-7xl mx-auto w-full flex-grow">
-        
+    <div className={`min-h-screen ${isApp ? 'bg-white' : 'bg-surface'} flex flex-col`}>
+      {!isApp && <PolicyNavbar />}
+
+      <main className={isApp ? "pt-6 pb-6 px-4 max-w-7xl mx-auto w-full flex-grow" : "pt-32 md:pt-36 pb-24 px-6 max-w-7xl mx-auto w-full flex-grow"}>
+
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
@@ -111,8 +113,8 @@ export const Partner = () => {
             <Building2 size={16} />
             <span>Agency Tie-up Program</span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -120,8 +122,8 @@ export const Partner = () => {
           >
             Partner Your Agency With Cudago
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -133,16 +135,16 @@ export const Partner = () => {
 
         {/* Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left Column: Sales Copy & Earnings Estimator */}
           <div className="lg:col-span-5 space-y-10">
-            
+
             {/* Value Propositions */}
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2.5">
                 <Sparkles className="text-secondary" /> Grow With Cudago
               </h3>
-              
+
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary shadow-sm">
                   <TrendingUp size={24} />
@@ -181,12 +183,12 @@ export const Partner = () => {
             </div>
 
             {/* Interactive Calculator Card */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -4 }}
               className="bg-surface-container-low p-6 md:p-8 rounded-[2.5rem] border border-surface-container-high shadow-md relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10" />
-              
+
               <h4 className="text-xl font-extrabold text-primary mb-2 flex items-center gap-2">
                 <ClipboardCheck className="text-secondary" size={20} />
                 Partner Earnings Calculator
@@ -201,12 +203,12 @@ export const Partner = () => {
                   <span>Active Crew Size</span>
                   <span className="text-primary bg-primary-fixed px-2.5 py-0.5 rounded-full">{calcTeamSize} Workers</span>
                 </div>
-                <input 
-                  type="range" 
-                  min="5" 
-                  max="100" 
-                  step="5" 
-                  value={calcTeamSize} 
+                <input
+                  type="range"
+                  min="5"
+                  max="100"
+                  step="5"
+                  value={calcTeamSize}
                   onChange={(e) => setCalcTeamSize(Number(e.target.value))}
                   className="w-full h-2 rounded-lg bg-surface-container-high accent-primary appearance-none cursor-pointer"
                 />
@@ -218,12 +220,12 @@ export const Partner = () => {
                   <span>Daily Jobs per Worker</span>
                   <span className="text-primary bg-primary-fixed px-2.5 py-0.5 rounded-full">{calcJobsPerDay} Jobs</span>
                 </div>
-                <input 
-                  type="range" 
-                  min="1" 
-                  max="4" 
-                  step="1" 
-                  value={calcJobsPerDay} 
+                <input
+                  type="range"
+                  min="1"
+                  max="4"
+                  step="1"
+                  value={calcJobsPerDay}
                   onChange={(e) => setCalcJobsPerDay(Number(e.target.value))}
                   className="w-full h-2 rounded-lg bg-surface-container-high accent-primary appearance-none cursor-pointer"
                 />
@@ -252,11 +254,15 @@ export const Partner = () => {
 
           {/* Right Column: Form Container */}
           <div className="lg:col-span-7">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="bg-white p-8 md:p-12 rounded-[3.5rem] shadow-sm border border-surface-container-high relative"
+              className={`relative ${
+                isApp 
+                  ? 'bg-transparent p-0 border-0 shadow-none' 
+                  : 'bg-white p-8 md:p-12 rounded-[3.5rem] shadow-sm border border-surface-container-high'
+              }`}
             >
               <AnimatePresence mode="wait">
                 {!submitted ? (
@@ -281,19 +287,19 @@ export const Partner = () => {
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                      
+
                       {/* Agency Name */}
                       <div>
                         <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
                           <Building2 size={14} /> Agency / Company Name
                         </label>
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           value={agencyName}
                           onChange={(e) => setAgencyName(e.target.value)}
                           placeholder="e.g. Pune Cleaning Services"
-                          className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium" 
-                          required 
+                          className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium"
+                          required
                         />
                       </div>
 
@@ -302,13 +308,13 @@ export const Partner = () => {
                         <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
                           <User size={14} /> Contact Person Name
                         </label>
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           value={contactName}
                           onChange={(e) => setContactName(e.target.value)}
                           placeholder="e.g. Ramesh Kumar"
-                          className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium" 
-                          required 
+                          className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium"
+                          required
                         />
                       </div>
 
@@ -318,27 +324,27 @@ export const Partner = () => {
                           <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
                             <Mail size={14} /> Business Email
                           </label>
-                          <input 
-                            type="email" 
+                          <input
+                            type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="e.g. contact@agency.com"
-                            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium" 
-                            required 
+                            placeholder="e.g. [EMAIL_ADDRESS]"
+                            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium"
+                            required
                           />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
                             <Phone size={14} /> Contact Phone Number
                           </label>
-                          <input 
-                            type="tel" 
+                          <input
+                            type="tel"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             placeholder="10-digit number"
                             pattern="[0-9]{10}"
-                            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium" 
-                            required 
+                            className="w-full p-4 rounded-xl border border-surface-container-high bg-surface-container-low focus:bg-white focus:border-primary outline-none transition-all text-sm font-medium"
+                            required
                           />
                         </div>
                       </div>
@@ -348,8 +354,8 @@ export const Partner = () => {
                         <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
                           <MessageSquare size={14} /> Message / Tell us about your services
                         </label>
-                        <textarea 
-                          rows={4} 
+                        <textarea
+                          rows={4}
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
                           placeholder="Please specify what services your agency offers, crew size, and any questions you have."
@@ -359,9 +365,9 @@ export const Partner = () => {
                       </div>
 
                       {/* Submit Button */}
-                      <Button 
-                        type="submit" 
-                        size="lg" 
+                      <Button
+                        type="submit"
+                        size="lg"
                         className="w-full mt-4 flex items-center justify-center gap-2"
                         disabled={loading}
                       >
@@ -391,7 +397,7 @@ export const Partner = () => {
                     <div className="w-20 h-20 bg-primary-fixed rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-primary">
                       <CheckCircle2 size={40} />
                     </div>
-                    
+
                     <h3 className="text-2xl font-extrabold text-primary mb-3">Message Sent!</h3>
                     <p className="text-on-surface-variant font-medium max-w-sm mx-auto mb-8 leading-relaxed text-sm">
                       Thank you for contacting us. We've received your partnership inquiry, and our operations team will get in touch with you within 24 hours.
@@ -435,8 +441,8 @@ export const Partner = () => {
         </div>
 
       </main>
-      
-      <Footer />
+
+      {!isApp && <Footer />}
     </div>
   );
 };

@@ -23,6 +23,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { storage, databases, ID, isAppwriteConfigured, appwriteConfig } from '../appwrite';
 import { JOBS, Job } from '../data/jobs';
+import { useIsApp } from '../hooks/useIsApp';
 
 const getFriendlyRoleName = (jobId: string): string => {
   const job = JOBS.find(j => j.id === jobId);
@@ -63,6 +64,7 @@ const formatBytes = (bytes: number, decimals = 2) => {
 };
 
 export const Apply = () => {
+  const isApp = useIsApp();
   const [searchParams, setSearchParams] = useSearchParams();
   const jobIdParam = searchParams.get('jobId') || 'general-application';
 
@@ -203,13 +205,17 @@ export const Apply = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-surface flex flex-col">
-        <PolicyNavbar />
-        <main className="pt-40 md:pt-32 pb-20 px-6 flex-grow flex items-center justify-center">
+      <div className={`min-h-screen ${isApp ? 'bg-white' : 'bg-surface'} flex flex-col`}>
+        {!isApp && <PolicyNavbar />}
+        <main className={`${isApp ? 'pt-6 pb-6 px-4' : 'pt-40 md:pt-32 pb-20 px-6'} flex-grow flex items-center justify-center`}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="max-w-md w-full bg-white p-8 md:p-12 rounded-[3rem] shadow-md border border-surface-container-high text-center"
+            className={`max-w-md w-full text-center ${
+              isApp
+                ? 'bg-transparent p-0 border-0 shadow-none'
+                : 'bg-white p-8 md:p-12 rounded-[3rem] shadow-md border border-surface-container-high'
+            }`}
           >
             <div className="w-20 h-20 bg-primary-fixed rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
               <CheckSquare className="text-primary" size={40} />
@@ -225,21 +231,25 @@ export const Apply = () => {
             </Link>
           </motion.div>
         </main>
-        <Footer />
+        {!isApp && <Footer />}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col">
-      <PolicyNavbar />
-      <main className="pt-40 md:pt-32 pb-20 px-6 flex-grow">
+    <div className={`min-h-screen ${isApp ? 'bg-white' : 'bg-surface'} flex flex-col`}>
+      {!isApp && <PolicyNavbar />}
+      <main className={isApp ? 'pt-6 pb-6 px-4 flex-grow' : 'pt-40 md:pt-32 pb-20 px-6 flex-grow'}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-8 items-start">
           {/* Left Column: Job Description details */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: isApp ? 0 : -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="md:col-span-5 bg-white p-6 md:p-8 rounded-[2.5rem] shadow-sm border border-surface-container-high space-y-6"
+            className={`md:col-span-5 space-y-6 ${
+              isApp
+                ? 'bg-transparent p-0 border-0 shadow-none'
+                : 'bg-white p-6 md:p-8 rounded-[2.5rem] shadow-sm border border-surface-container-high'
+            }`}
           >
             <div>
               <Link
@@ -313,9 +323,13 @@ export const Apply = () => {
 
           {/* Right Column: Application Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: isApp ? 0 : 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="md:col-span-7 bg-white p-6 md:p-10 rounded-[2.5rem] shadow-sm border border-surface-container-high"
+            className={`md:col-span-7 ${
+              isApp
+                ? 'bg-transparent p-0 border-0 shadow-none'
+                : 'bg-white p-6 md:p-10 rounded-[2.5rem] shadow-sm border border-surface-container-high'
+            }`}
           >
             <h2 className="text-2xl font-extrabold text-primary mb-2">Apply for this Position</h2>
             <p className="text-on-surface-variant text-sm mb-8 leading-relaxed">
@@ -496,7 +510,7 @@ export const Apply = () => {
           </motion.div>
         </div>
       </main>
-      <Footer />
+      {!isApp && <Footer />}
     </div>
   );
 };

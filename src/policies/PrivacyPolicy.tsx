@@ -1,9 +1,9 @@
-import { PolicyLayout } from './PolicyLayout';
+import { PageLayout } from '../components/PageLayout';
 import { Link } from 'react-router-dom';
 
 export const PrivacyPolicy = () => {
   return (
-    <PolicyLayout title="Privacy Policy" lastUpdated="June 27, 2026">
+    <PageLayout title="Privacy Policy" lastUpdated="June 27, 2026" useProse maxWidth="max-w-4xl">
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">1. Scope</h2>
         <p>
@@ -102,6 +102,6 @@ export const PrivacyPolicy = () => {
           For privacy questions, account deletion help, or data requests, contact us at cudagoplatform@gmail.com.
         </p>
       </section>
-    </PolicyLayout>
+    </PageLayout>
   );
 };

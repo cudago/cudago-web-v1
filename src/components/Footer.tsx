@@ -15,24 +15,24 @@ export const Footer = () => {
               Redefining how urban households manage daily needs with a trusted hyperlocal concierge for all your home services.
             </p>
             <div className="flex gap-3 pt-2">
-              <a 
-                href="#" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white border border-surface-container-high transition-all cursor-pointer"
               >
                 <Instagram size={18} />
               </a>
-              <a 
-                href="#" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white border border-surface-container-high transition-all cursor-pointer"
               >
                 <Linkedin size={18} />
               </a>
-              <a 
-                href="mailto:contact@cudago.com" 
+              <a
+                href="mailto:cudagoplatform@gmail.com"
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white border border-surface-container-high transition-all cursor-pointer"
               >
                 <Mail size={18} />

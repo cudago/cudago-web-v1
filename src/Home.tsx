@@ -5,11 +5,14 @@ import { LaunchSection } from './components/LaunchSection';
 import { CTA } from './components/CTA';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { useIsApp } from './hooks/useIsApp';
 
 export const Home = () => {
+  const isApp = useIsApp();
+
   return (
     <div className="min-h-screen">
-      <Navbar />
+      {!isApp && <Navbar />}
       <main>
         <Hero />
         <Features />
@@ -17,7 +20,7 @@ export const Home = () => {
         <LaunchSection />
         {/* <CTA /> */}
       </main>
-      <Footer />
+      {!isApp && <Footer />}
     </div>
   );
 };
